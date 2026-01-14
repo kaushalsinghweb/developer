@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaushal - Web Designer Portfolio</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0E21A0;
+            --accent-yellow: #FFD41D;
+            --light-cream: #F5FBE6;
+            --dark-blue: #091477;
+            --medium-blue: #1A2FC1;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --gradient-blue: linear-gradient(135deg, #0E21A0 0%, #1A2FC1 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--light-cream);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(245, 251, 230, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(14, 33, 160, 0.1);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-blue) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent-yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-blue);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 212, 29, 0.2);
+            color: var(--accent-yellow);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 212, 29, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .typing-text {
+            color: var(--accent-yellow);
+            font-weight: 700;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            margin-right: 15px;
+            box-shadow: 0 4px 15px rgba(255, 212, 29, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 212, 29, 0.4);
+            color: var(--dark-blue);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 10;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-image-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: var(--accent-yellow);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.2;
+            animation: slideIn 1s ease 0.5s both;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+        }
+
+        .hero-image img {
+            width: 450px;
+            height: 450px;
+            border-radius: 20px;
+            object-fit: cover;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Social Icons */
+        .social-icons {
+            position: absolute;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            z-index: 10;
+            animation: fadeInRight 1s ease 0.8s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px) translateY(-50%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) translateY(-50%);
+            }
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icon:hover {
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(255, 212, 29, 0.4);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-yellow);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* About Section */
+        .about-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 33, 160, 0.15);
+        }
+
+        /* Services Section */
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(14, 33, 160, 0.05);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-blue);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 33, 160, 0.12);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(14, 33, 160, 0.2);
+        }
+
+        /* Portfolio Section */
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            height: 300px;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.08);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 33, 160, 0.15);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(14, 33, 160, 0.95) 0%, rgba(26, 47, 193, 0.95) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay h4 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255, 255, 255, 0.9);
+            transform: translateY(20px);
+            transition: all 0.3s ease 0.1s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay h4,
+        .portfolio-item:hover .portfolio-overlay p {
+            transform: translateY(0);
+        }
+
+        /* Skills Section */
+        .skill-item {
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .skill-progress {
+            background: rgba(14, 33, 160, 0.1);
+            height: 10px;
+            border-radius: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-bar {
+            height: 100%;
+            background: var(--gradient-blue);
+            border-radius: 50px;
+            width: 0;
+            transition: width 2s ease;
+            position: relative;
+        }
+
+        .skill-bar::after {
+            content: attr(data-percent);
+            position: absolute;
+            right: 10px;
+            top: -25px;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Testimonials */
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.08);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(14, 33, 160, 0.12);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .author-info h6 {
+            margin: 0;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .author-info small {
+            color: var(--text-light);
+        }
+
+        .stars {
+            color: var(--accent-yellow);
+            margin-bottom: 15px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--gradient-blue);
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 80px 0;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-yellow);
+            color: white;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .btn-submit {
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            padding: 12px 40px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 212, 29, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image img {
+                width: 300px;
+                height: 300px;
+            }
+
+            .social-icons {
+                position: static;
+                transform: none;
+                flex-direction: row;
+                justify-content: center;
+                margin-top: 30px;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Kaushal.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6 hero-content">
+                    <span class="hero-badge">Available for Projects</span>
+                    <h1>Hi, I'm <span style="color: var(--accent-yellow);">Kaushal</span></h1>
+                    <p class="subtitle">
+                        I'm a <span class="typing-text" id="typingText"></span>
+                    </p>
+                    <p class="hero-description">
+                        Creating exceptional digital experiences with modern design and cutting-edge technology. 
+                        Transforming ideas into powerful web solutions that drive results.
+                    </p>
+                    <div>
+                        <a href="portfolio.html" class="btn-primary">View My Work</a>
+                        <a href="contact.html" class="btn-outline">Hire Me</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 hero-image">
+                    <div class="hero-image-container">
+                        <img src="assets/kaushal.jpeg" alt="Kaushal" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">
+                    Passionate about creating beautiful and functional web experiences
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="about-card">
+                        <h4 class="mb-3">Who I Am</h4>
+                        <p>
+                            I'm Kaushal, a creative web designer with over 5 years of experience in crafting 
+                            beautiful, user-friendly websites and digital experiences. I specialize in modern 
+                            web technologies and have a passion for clean, professional design.
+                        </p>
+                        <p>
+                            My approach combines creativity with technical expertise to deliver solutions that 
+                            not only look stunning but also perform exceptionally well.
+                        </p>
+                        <div class="mt-4">
+                            <h6 class="mb-3">Let's Connect:</h6>
+                            <div class="d-flex gap-3">
+                                <span><i class="bi bi-envelope-fill" style="color: var(--primary-blue);"></i> kaushukumar786@gmail.com</span>
+                                <span><i class="bi bi-telephone-fill" style="color: var(--primary-blue);"></i> +91 7065298782</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="about-card">
+                        <h4 class="mb-3">What I Do</h4>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-palette-fill me-2" style="font-size: 1.5rem; color: var(--primary-blue);"></i>
+                                    <div>
+                                        <h6 class="mb-0">UI/UX Design</h6>
+                                        <small>Creating intuitive interfaces</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-code-slash me-2" style="font-size: 1.5rem; color: var(--primary-blue);"></i>
+                                    <div>
+                                        <h6 class="mb-0">Web Development</h6>
+                                        <small>Building responsive websites</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-phone me-2" style="font-size: 1.5rem; color: var(--primary-blue);"></i>
+                                    <div>
+                                        <h6 class="mb-0">Mobile Design</h6>
+                                        <small>Mobile-first approach</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-graph-up me-2" style="font-size: 1.5rem; color: var(--primary-blue);"></i>
+                                    <div>
+                                        <h6 class="mb-0">SEO Optimization</h6>
+                                        <small>Improving visibility</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between text-center">
+                                <div>
+                                    <h3 class="mb-0" style="color: var(--primary-blue);">50+</h3>
+                                    <small>Projects Completed</small>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0" style="color: var(--primary-blue);">30+</h3>
+                                    <small>Happy Clients</small>
+                                </div>
+                                <div>
+                                    <h3 class="mb-0" style="color: var(--primary-blue);">5+</h3>
+                                    <small>Years Experience</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section" style="background: var(--light-cream);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">My Services</h2>
+                <p class="section-subtitle">
+                    Offering comprehensive web design and development solutions
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-brush"></i>
+                        </div>
+                        <h4>Web Design</h4>
+                        <p>Creating beautiful, modern designs that capture your brand's essence and engage your audience.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-laptop"></i>
+                        </div>
+                        <h4>Development</h4>
+                        <p>Building responsive, fast, and secure websites using the latest technologies and best practices.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h4>Responsive Design</h4>
+                        <p>Ensuring your website looks perfect and functions flawlessly on all devices and screen sizes.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <h4>SEO Optimization</h4>
+                        <p>Improving your website's visibility and ranking on search engines to drive organic traffic.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <h4>Performance</h4>
+                        <p>Optimizing website speed and performance for better user experience and conversion rates.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h4>Support</h4>
+                        <p>Providing ongoing maintenance and support to keep your website running smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">My Portfolio</h2>
+                <p class="section-subtitle">
+                    Showcasing my recent work and creative projects
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://travelmarzi.com/assets/img/travel2.png" alt="Project 1" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h4>Travel Marzi</h4>
+                            <p>Tours and Travel website</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-item" style="    padding: 90px 0px;">
+                        <img src="https://travelojo.in/assets/img/logo.png" alt="Project 2" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h4>Travel OJO </h4>
+                            <p>Professional business presence</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/project3/400/300.jpg" alt="Project 3" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h4>Portfolio Design</h4>
+                            <p>Creative personal portfolio</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/project4/400/300.jpg" alt="Project 4" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h4>Mobile App UI</h4>
+                            <p>Intuitive mobile interface</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/project5/400/300.jpg" alt="Project 5" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h4>Dashboard Design</h4>
+                            <p>Data visualization dashboard</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://picsum.photos/seed/project6/400/300.jpg" alt="Project 6" loading="lazy">
+                        <div class="portfolio-overlay">
+                            <h4>Landing Page</h4>
+                            <p>High-converting landing design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section" style="background: var(--light-cream);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">My Skills</h2>
+                <p class="section-subtitle">
+                    Technologies and tools I work with
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="skill-name">HTML/CSS</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="95%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="90%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Bootstrap</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="92%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">React.js</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="85%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="skill-name">UI/UX Design</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="88%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Figma</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="85%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">WordPress</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="80%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">SEO</div>
+                        <div class="skill-progress">
+                            <div class="skill-bar" data-percent="75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Client Testimonials</h2>
+                <p class="section-subtitle">
+                    What my clients say about working with me
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Kaushal delivered an exceptional website that exceeded our expectations. 
+                            His attention to detail and creative vision made all the difference."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/client1/50/50.jpg" alt="Client 1" class="author-img" loading="lazy">
+                            <div class="author-info">
+                                <h6>Sarah Johnson</h6>
+                                <small>CEO, TechStart</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Working with Kaushal was a fantastic experience. He understood our needs 
+                            perfectly and delivered a beautiful, functional website on time."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/client2/50/50.jpg" alt="Client 2" class="author-img" loading="lazy">
+                            <div class="author-info">
+                                <h6>Michael Chen</h6>
+                                <small>Marketing Director</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Kaushal's design skills are outstanding. He transformed our outdated website 
+                            into a modern, engaging platform that our customers love."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://picsum.photos/seed/client3/50/50.jpg" alt="Client 3" class="author-img" loading="lazy">
+                            <div class="author-info">
+                                <h6>Emily Davis</h6>
+                                <small>Founder, Creative Co.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-section">
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <h2 class="text-white mb-4">Let's Work Together</h2>
+                        <p class="text-white mb-4">
+                            Have a project in mind? I'd love to hear about it. Send me a message and 
+                            let's create something amazing together.
+                        </p>
+                        
+                        <div class="contact-info mb-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-envelope-fill me-3" style="font-size: 1.5rem;"></i>
+                                <span>kaushukumar786@gmail.com</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-telephone-fill me-3" style="font-size: 1.5rem;"></i>
+                                <span>+91 7065298782</span>
+                            </div>
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-geo-alt-fill me-3" style="font-size: 1.5rem;"></i>
+                                <span>Mumbai, India</span>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                            <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+                            <a href="#" class="text-white me-3"><i class="bi bi-linkedin fs-4"></i></a>
+                            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+                            <a href="#" class="text-white"><i class="bi bi-github fs-4"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <form class="contact-form" id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Subject" required>
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn-submit">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kaushal. All rights reserved. | Designed with <i class="bi bi-heart-fill" style="color: var(--accent-yellow);"></i> by Kaushal</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Typing Effect
+        const typingTexts = ['Web Designer', 'UI/UX Expert', 'Creative Developer', 'Problem Solver'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeText() {
+            const currentText = typingTexts[textIndex];
+            const typingElement = document.getElementById('typingText');
+            
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentText.length) {
+                    isDeleting = true;
+                    setTimeout(typeText, pauseTime);
+                    return;
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % typingTexts.length;
+                }
+            }
+            
+            setTimeout(typeText, isDeleting ? deletingSpeed : typingSpeed);
+        }
+
+        typeText();
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active Navigation
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Skill Bars Animation on Scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar');
+                    skillBars.forEach(bar => {
+                        const percent = bar.getAttribute('data-percent');
+                        setTimeout(() => {
+                            bar.style.width = percent;
+                        }, 200);
+                    });
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const skillsSection = document.querySelector('#skills');
+        if (skillsSection) {
+            skillObserver.observe(skillsSection);
+        }
+
+        // Contact Form
+       document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.querySelector('input[type="text"]').value;
+    const email = document.querySelector('input[type="email"]').value;
+    const subject = document.querySelector('input[placeholder="Subject"]').value;
+    const message = document.querySelector('textarea').value;
+    
+    // Format WhatsApp message
+    const whatsappMessage = `*New Contact Form Submission*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Subject:* ${subject}%0A*Message:* ${message}`;
+    
+    // Your WhatsApp number (replace with your actual number with country code, without +)
+    const phoneNumber = "917065298782"; // Example: 917065298782 for +91 7065298782
+    
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, '_blank');
+    
+    // Create success message
+    const successMessage = document.createElement('div');
+    successMessage.className = 'alert alert-success mt-3';
+    successMessage.style.background = 'var(--accent-yellow)';
+    successMessage.style.color = 'var(--primary-blue)';
+    successMessage.style.fontWeight = '600';
+    successMessage.textContent = 'Thank you for your message! I\'ll get back to you soon.';
+    this.appendChild(successMessage);
+    
+    // Reset form
+    this.reset();
+    
+    // Remove message after 3 seconds
+    setTimeout(() => {
+        successMessage.remove();
+    }, 3000);
+});
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '0.5rem 0';
+                navbar.style.boxShadow = '0 5px 30px rgba(14, 33, 160, 0.15)';
+            } else {
+                navbar.style.padding = '1rem 0';
+                navbar.style.boxShadow = '0 2px 20px rgba(14, 33, 160, 0.1)';
+            }
+        });
+
+        // Portfolio Item Click
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.addEventListener('click', function() {
+                console.log('Portfolio item clicked');
+            });
+        });
+    </script>
+</body>
+</html>

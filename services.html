@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Kaushal | Web Designer Portfolio</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-blue: #0E21A0;
+            --accent-yellow: #FFD41D;
+            --light-cream: #F5FBE6;
+            --dark-blue: #091477;
+            --medium-blue: #1A2FC1;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --gradient-blue: linear-gradient(135deg, #0E21A0 0%, #1A2FC1 100%);
+            --gradient-hero: linear-gradient(135deg, #0E21A0 0%, #1A2FC1 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--light-cream);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-cream);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-blue);
+            border-radius: 10px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(245, 251, 230, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(14, 33, 160, 0.1);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary-blue) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--accent-yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+
+        /* Hero Section */
+        .services-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            padding-top: 100px;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .hero-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 212, 29, 0.1);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .shape:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 15%;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(0) rotate(0deg); }
+            75% { transform: translateY(20px) rotate(-5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: white;
+            content: ">";
+        }
+
+        .breadcrumb-item a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb-item a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .breadcrumb-item.active {
+            color: var(--accent-yellow);
+            font-weight: 600;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-yellow);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.08);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 212, 29, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(14, 33, 160, 0.15);
+            border-color: var(--accent-yellow);
+        }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 3rem;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.2);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(14, 33, 160, 0.3);
+        }
+
+        .service-title {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .service-description {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            text-align: left;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .service-price {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .service-price span {
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* Pricing Tables */
+        .pricing-table {
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.08);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .pricing-table.featured {
+            border-color: var(--accent-yellow);
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 212, 29, 0.2);
+        }
+
+        .pricing-table.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            padding: 5px 30px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .pricing-table:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(14, 33, 160, 0.15);
+            border-color: var(--primary-blue);
+        }
+
+        .pricing-table.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .plan-name {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .plan-price {
+            font-size: 3.5rem;
+            color: var(--primary-blue);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .plan-price span {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .plan-duration {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid rgba(14, 33, 160, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-yellow);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .btn-plan {
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(255, 212, 29, 0.3);
+        }
+
+        .btn-plan:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 212, 29, 0.4);
+            color: var(--dark-blue);
+        }
+
+        /* Process Section */
+        .process-step {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .process-step::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: -50%;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-blue);
+            z-index: 0;
+        }
+
+        .process-step:last-child::after {
+            display: none;
+        }
+
+        .process-number {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.2);
+        }
+
+        .process-step:hover .process-number {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(14, 33, 160, 0.3);
+        }
+
+        .process-title {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .process-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: white;
+            border: 2px solid transparent;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(14, 33, 160, 0.08);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 15px 40px rgba(14, 33, 160, 0.15);
+        }
+
+        .faq-question {
+            padding: 20px 30px;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-blue);
+        }
+
+        .faq-question.active {
+            color: var(--primary-blue);
+            background: rgba(14, 33, 160, 0.05);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .faq-answer.show {
+            padding: 0 30px 20px;
+            max-height: 500px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-blue);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease;
+        }
+
+       
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .btn-primary {
+            background: var(--accent-yellow);
+            color: var(--primary-blue);
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            margin: 10px;
+            box-shadow: 0 4px 15px rgba(255, 212, 29, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 212, 29, 0.4);
+            color: var(--dark-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .process-step::after {
+                display: none;
+            }
+
+            .pricing-table.featured {
+                transform: scale(1);
+            }
+
+            .plan-price {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Kaushal.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="portfolio.html">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Services</li>
+                    </ol>
+                </nav>
+                <h1>SERVICES</h1>
+                <p class="hero-subtitle">Professional Web Design & Development Solutions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Services Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">What I Offer</h2>
+                <p class="section-subtitle">
+                    Comprehensive web solutions tailored to your needs
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+                        <h3 class="service-title">Web Design</h3>
+                        <p class="service-description">
+                            Creating stunning, user-centric designs that capture your brand's essence and engage your audience.
+                        </p>
+                        <ul class="service-features">
+                            <li>Custom UI/UX Design</li>
+                            <li>Responsive Layouts</li>
+                            <li>Brand Identity Design</li>
+                            <li>Wireframing & Prototyping</li>
+                            <li>Design Systems</li>
+                        </ul>
+                        <div class="service-price">
+                            Starting at <span>$999</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+                        <h3 class="service-title">Web Development</h3>
+                        <p class="service-description">
+                            Building robust, scalable websites with clean code and cutting-edge technologies.
+                        </p>
+                        <ul class="service-features">
+                            <li>Frontend Development</li>
+                            <li>Backend Integration</li>
+                            <li>E-commerce Solutions</li>
+                            <li>CMS Development</li>
+                            <li>API Integration</li>
+                        </ul>
+                        <div class="service-price">
+                            Starting at <span>$1,499</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h3 class="service-title">Mobile Design</h3>
+                        <p class="service-description">
+                            Designing mobile-first experiences that work flawlessly across all devices and platforms.
+                        </p>
+                        <ul class="service-features">
+                            <li>Mobile App UI Design</li>
+                            <li>Progressive Web Apps</li>
+                            <li>Mobile-First Approach</li>
+                            <li>Cross-Platform Design</li>
+                            <li>App Store Optimization</li>
+                        </ul>
+                        <div class="service-price">
+                            Starting at <span>$1,999</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <h3 class="service-title">SEO Optimization</h3>
+                        <p class="service-description">
+                            Boosting your online visibility and driving organic traffic to your website.
+                        </p>
+                        <ul class="service-features">
+                            <li>On-Page SEO</li>
+                            <li>Technical SEO Audit</li>
+                            <li>Keyword Research</li>
+                            <li>Content Optimization</li>
+                            <li>Performance Optimization</li>
+                        </ul>
+                        <div class="service-price">
+                            Starting at <span>$499</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-speedometer2"></i>
+                        </div>
+                        <h3 class="service-title">Performance</h3>
+                        <p class="service-description">
+                            Optimizing your website for maximum speed, security, and user experience.
+                        </p>
+                        <ul class="service-features">
+                            <li>Speed Optimization</li>
+                            <li>Security Hardening</li>
+                            <li>CDN Setup</li>
+                            <li>Database Optimization</li>
+                            <li>Performance Monitoring</li>
+                        </ul>
+                        <div class="service-price">
+                            Starting at <span>$399</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-headset"></i>
+                        </div>
+                        <h3 class="service-title">Maintenance</h3>
+                        <p class="service-description">
+                            Keeping your website updated, secure, and performing at its best.
+                        </p>
+                        <ul class="service-features">
+                            <li>Regular Updates</li>
+                            <li>Security Monitoring</li>
+                            <li>Backup Management</li>
+                            <li>Content Updates</li>
+                            <li>24/7 Support</li>
+                        </ul>
+                        <div class="service-price">
+                            Starting at <span>$199/mo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" style="background: var(--light-cream);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Pricing Plans</h2>
+                <p class="section-subtitle">
+                    Choose the perfect plan for your project
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-table">
+                        <h3 class="plan-name">STARTER</h3>
+                        <div class="plan-price">
+                            $999<span>/project</span>
+                        </div>
+                        <p class="plan-duration">Perfect for small businesses</p>
+                        <ul class="plan-features">
+                            <li>5-Page Website</li>
+                            <li>Responsive Design</li>
+                            <li>Basic SEO Setup</li>
+                            <li>Contact Form</li>
+                            <li>1 Month Support</li>
+                            <li>Source Code Included</li>
+                        </ul>
+                        <a href="#contact" class="btn-plan">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-table featured">
+                        <h3 class="plan-name">PROFESSIONAL</h3>
+                        <div class="plan-price">
+                            $1,999<span>/project</span>
+                        </div>
+                        <p class="plan-duration">Most popular choice</p>
+                        <ul class="plan-features">
+                            <li>10-Page Website</li>
+                            <li>Custom Design</li>
+                            <li>Advanced SEO</li>
+                            <li>CMS Integration</li>
+                            <li>3 Months Support</li>
+                            <li>Source Code + Docs</li>
+                            <li>Performance Optimization</li>
+                            <li>Analytics Setup</li>
+                        </ul>
+                        <a href="#contact" class="btn-plan">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="pricing-table">
+                        <h3 class="plan-name">ENTERPRISE</h3>
+                        <div class="plan-price">
+                            $4,999<span>/project</span>
+                        </div>
+                        <p class="plan-duration">For large-scale projects</p>
+                        <ul class="plan-features">
+                            <li>Unlimited Pages</li>
+                            <li>Custom Web Application</li>
+                            <li>E-commerce Integration</li>
+                            <li>API Development</li>
+                            <li>6 Months Support</li>
+                            <li>Complete Documentation</li>
+                            <li>Advanced Analytics</li>
+                            <li>Priority Support</li>
+                            <li>Custom Training</li>
+                        </ul>
+                        <a href="#contact" class="btn-plan">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">My Process</h2>
+                <p class="section-subtitle">
+                    How I bring your ideas to life
+                </p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <h4 class="process-title">Discovery</h4>
+                        <p class="process-description">
+                            Understanding your goals, target audience, and requirements through detailed consultation.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <h4 class="process-title">Design</h4>
+                        <p class="process-description">
+                            Creating wireframes, mockups, and prototypes that bring your vision to life.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <h4 class="process-title">Development</h4>
+                        <p class="process-description">
+                            Building your website with clean, efficient code and best practices.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <h4 class="process-title">Launch</h4>
+                        <p class="process-description">
+                            Deploying your website and providing ongoing support for success.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: var(--light-cream);">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <p class="section-subtitle">
+                    Everything you need to know about my services
+                </p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How long does a typical project take?
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Project timelines vary depending on complexity. A simple 5-page website typically takes 2-3 weeks, 
+                            while more complex projects can take 4-8 weeks. I'll provide a detailed timeline during our initial consultation.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Do you provide ongoing support?
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! I offer various support packages ranging from basic maintenance to 24/7 priority support. 
+                            All projects include at least 1 month of free support, with extended options available.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Can you work with existing websites?
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Absolutely! I can redesign, optimize, or add new features to existing websites. 
+                            I'll conduct a thorough audit to understand your current setup and recommend the best approach.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What payment methods do you accept?
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            I accept bank transfers, credit cards, PayPal, and cryptocurrency. 
+                            Payment terms are typically 50% upfront and 50% upon completion, but we can discuss flexible options.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            Do you offer refunds?
+                            <i class="bi bi-chevron-down faq-icon"></i>
+                        </button>
+                        <div class="faq-answer">
+                            Customer satisfaction is my priority. If you're not satisfied with the initial design concepts, 
+                            I'll work with you to make it right or provide a refund of the initial deposit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="container">
+        <div class="cta-section">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">
+                        Ready to Start Your Project?
+                    </h2>
+                    <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.9);">
+                        Let's discuss your project requirements and create something amazing together. 
+                        I offer free consultations to help you get started on the right foot.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a href="contact.html" class="btn-primary">Get Free Quote</a>
+                    <a href="portfolio.html" class="btn-primary">View Portfolio</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Kaushal. All rights reserved. | Designed with <i class="bi bi-heart-fill" style="color: var(--accent-yellow);"></i> by Kaushal</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const isActive = button.classList.contains('active');
+                
+                // Close all other FAQs
+                document.querySelectorAll('.faq-question').forEach(otherButton => {
+                    otherButton.classList.remove('active');
+                    otherButton.nextElementSibling.classList.remove('show');
+                });
+                
+                // Toggle current FAQ
+                if (!isActive) {
+                    button.classList.add('active');
+                    answer.classList.add('show');
+                }
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active Navigation
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === window.location.pathname) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '0.5rem 0';
+                navbar.style.boxShadow = '0 5px 30px rgba(14, 33, 160, 0.15)';
+            } else {
+                navbar.style.padding = '1rem 0';
+                navbar.style.boxShadow = '0 2px 20px rgba(14, 33, 160, 0.1)';
+            }
+        });
+
+        // Add hover effect to service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add hover effect to pricing tables
+        document.querySelectorAll('.pricing-table').forEach(table => {
+            table.addEventListener('mouseenter', function() {
+                if (!this.classList.contains('featured')) {
+                    this.style.transform = 'translateY(-10px)';
+                }
+            });
+            table.addEventListener('mouseleave', function() {
+                if (!this.classList.contains('featured')) {
+                    this.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Process step hover effect
+        document.querySelectorAll('.process-step').forEach(step => {
+            step.addEventListener('mouseenter', function() {
+                this.querySelector('.process-number').style.transform = 'scale(1.1)';
+            });
+            step.addEventListener('mouseleave', function() {
+                this.querySelector('.process-number').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
